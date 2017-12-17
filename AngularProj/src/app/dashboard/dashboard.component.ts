@@ -1,5 +1,5 @@
+import { DatabaseService } from './../database.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { HttpService } from "../service/http.service";
 import { AngularFire, FirebaseListObservable } from "angularfire2";
 import { Item } from "../items";
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  constructor( private http : HttpService, public afire: AngularFire,  private router: Router) { 
+  constructor( private db : DatabaseService, public afire: AngularFire,  private router: Router) { 
       
       }
       private uniqueKey: number ;
@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
           }
 
       public getUniqueKey(email:string):number{
-        return this.http.getUniqueKey(email);
+        return this.db.getUniqueKey(email);
       }  
       
       validageUniqueKey(){
@@ -43,7 +43,7 @@ export class DashboardComponent implements OnInit {
           if(this.attemptCount === 0){
             this.errorMessage = "You have exceeded maximum attempts, you will be logged out 2 sec";
             setTimeout(()=>{
-              this.router.navigate(['/forms']);
+              this.router.navigate(['/login']);
             }, 2000)
           } else{
             this.errorMessage = "Sorry, you have "+this.attemptCount;
@@ -53,40 +53,4 @@ export class DashboardComponent implements OnInit {
       }
 
 
-  // private users: Item;
-  // private items: FirebaseListObservable<any[]>;
-  // private ListofData : any;
-  // private countList : any;
-  // private newPasswordValue : any;
-
-  //  constructor( private http : HttpService, public afire: AngularFire) { 
-  //    this.items = afire.database.list('/Users');
-  //    this.http.getItemsList({}).subscribe((response) => {
-  //    this.ListofData = response;
-  //     this.countList = {};
-  //     this.newPasswordValue = {};
-  //    for(let m in this.ListofData){
-  //      this.countList[this.ListofData[m].username] = 3;
-  //    }
-  //     }
-  //   );
-  //   }
-  //   ngOnInit() {
-  //      //this.callForData(null);
-  //   }
-  //      public removeItem(u, i){
-  //       this.http.deleteItem(u.$key);
-  //       console.log("dataList", this.ListofData);
-  //      }
-  //      public updateItem(u,i){
-  //        if(this.newPasswordValue[u.username]!== u.password && this.countList[u.username] > 0){
-  //          this.countList[u.username]--;
-           
-  //        }
-  //      }
-
-  //      public saveItem(u,i){
-  //        this.isupdateItem = !this.isupdateItem;
-  //      }
-
-}
+ }
