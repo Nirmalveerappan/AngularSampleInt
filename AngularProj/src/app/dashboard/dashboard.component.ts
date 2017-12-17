@@ -12,53 +12,44 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
   constructor( private db : DatabaseService, public afire: AngularFire,  private router: Router) { 
       
+  }
+  public uniqueKey: number ;
+  private loggedEmail: string = '';
+  public userRandomNo: number = null;
+  public errorMessage: string = '';
+  public successMessage: string = '';
+  public attemptCount: number = 3;
+
+  ngOnInit() {
+    this.loggedEmail  = sessionStorage.getItem('loggedEmail');
+      this.getUniqueKey(this.loggedEmail).subscribe((response)=>{
+    });
+  }
+
+  public getUniqueKey(email:string):any{
+    return this.db.getUniqueKey(email);
+  }  
+  
+  validageUniqueKey(){
+    this.errorMessage = '';
+    this.successMessage = '';
+    if(this.userRandomNo == undefined || this.userRandomNo == null){
+      this.errorMessage =  "Please enter valid number";
+    }
+    if(this.userRandomNo === this.uniqueKey){
+      this.successMessage = "Good, you have found";
+    } else {
+      this.attemptCount--;
+      if(this.attemptCount === 0){
+        this.errorMessage = "You have exceeded maximum attempts, you will be logged out 2 sec";
+        setTimeout(()=>{
+          this.router.navigate(['/forms']);
+        }, 2000)
+      } else{
+        this.errorMessage = "Sorry, you have "+this.attemptCount+" remaining";
       }
-      public uniqueKey: number ;
-      private loggedEmail: string = '';
-      public userRandomNo: number = null;
-      public errorMessage: string = '';
-      public successMessage: string = '';
-      public attemptCount: number = 3;
-      ngOnInit() {
-            this.loggedEmail  = sessionStorage.getItem('loggedEmail');
-            console.log(this.loggedEmail)
-             this.getUniqueKey(this.loggedEmail).subscribe((response)=>{
-               console.log('doneeeeeee');
-               
-              console.log(response)
-              //this.uniqueKey = 
-             })
-             
-          }
-
-      public getUniqueKey(email:string):any{
-        return this.db.getUniqueKey(email);
-      }  
-      
-      validageUniqueKey(){
-        console.log('clicked');
-        this.errorMessage = '';
-        this.successMessage = '';
-        if(this.userRandomNo == undefined || this.userRandomNo == null){
-          this.errorMessage =  "Please enter valid number";
-        }
-        if(this.userRandomNo === this.uniqueKey){
-          console.log("done");
-          this.successMessage = "Good, you have found";
-        } else {
-          this.attemptCount--;
-          if(this.attemptCount === 0){
-            this.errorMessage = "You have exceeded maximum attempts, you will be logged out 2 sec";
-            setTimeout(()=>{
-              this.router.navigate(['/forms']);
-            }, 2000)
-          } else{
-            this.errorMessage = "Sorry, you have "+this.attemptCount;
-          }
-        }
-        this.userRandomNo = null;
-      }
-
-
+    }
+    this.userRandomNo = null;
+  }
 
 }

@@ -5,13 +5,10 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './status-board.component.html',
   styleUrls: ['./status-board.component.css']
 })
-export class StatusBoardComponent implements OnInit {
+export class StatusBoardComponent  {
   @Input() status: string;
   @Input() errorMessage: string;
     constructor() { }
   
-    ngOnInit() {
-  
-    }
 
 }
