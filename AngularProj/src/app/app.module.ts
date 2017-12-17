@@ -1,21 +1,23 @@
-
+import { DatabaseService } from './service/database.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
 import { firebaseConfig } from './../environments/firebase.config';
+import { AppComponent } from './app.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { HttpModule } from "@angular/http";
 import { routeValues } from "./app.routes";
-
+import { StatusBoardComponent } from './status-board/status-board.component';
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    LoginComponent,
-    DashboardComponent
+    AppComponent,
+    DashboardComponent,
+    RegistrationComponent,
+    AppCountComponent,
+    StatusBoardComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,7 @@ import { routeValues } from "./app.routes";
     RouterModule.forRoot(routeValues),
     FormsModule 
   ],
-  providers: [],
+  providers: [DatabaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

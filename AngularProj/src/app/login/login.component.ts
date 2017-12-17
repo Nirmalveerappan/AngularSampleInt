@@ -1,9 +1,9 @@
-import { DatabaseService } from './../database.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FirebaseListObservable, AngularFire } from "angularfire2";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 import { Router } from '@angular/router';
+import { DatabaseService } from "../service/database.service";
 
 @Component({
   selector: 'app-login',

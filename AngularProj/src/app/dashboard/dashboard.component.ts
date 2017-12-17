@@ -1,8 +1,9 @@
-import { DatabaseService } from './../database.service';
+
 import { Component, OnInit, Input } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from "angularfire2";
 import { Item } from "../items";
 import { Router } from '@angular/router';
+import { DatabaseService } from "../service/database.service";
 
 @Component({
   selector: 'app-dashboard',
