@@ -49,8 +49,7 @@ export class DashboardComponent implements OnInit {
       } else{
         this.errorMessage = "Sorry, you have "+this.attemptCount+" remaining";
       }
-    }
+  }
     this.userRandomNo = null;
   }
-
 }

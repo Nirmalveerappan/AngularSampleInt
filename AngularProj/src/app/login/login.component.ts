@@ -10,11 +10,9 @@ import { DatabaseService } from "../service/database.service";
   encapsulation: ViewEncapsulation.None 
 })
 export class LoginComponent implements OnInit {
-
- private userDetails : FirebaseListObservable<any[]>; ;
+  private userDetails : FirebaseListObservable<any[]>; ;
   private loginForm : FormGroup;
   items: FirebaseListObservable<any[]>;
-
     constructor( private db : DatabaseService, public afire: AngularFire, public router: Router) { 
     }
     ngOnInit() {
