@@ -17,6 +17,13 @@ public getItemsList(query={}): FirebaseListObservable<Item[]> {
   });
   return this.items
 }
+// Return a single observable item
+public getUniqueKey(email: string): FirebaseListObservable<Item[]> {
+  this.items = this.db.list('/Users', {
+    query:  {"email":email}
+  });
+  return this.items;
+}
  public createItem(item: Item): void  {
    this.items.push(item).catch(error => console.log(error));
   }
@@ -28,8 +35,4 @@ public getItemsList(query={}): FirebaseListObservable<Item[]> {
   }
 
 
-  public getUniqueKey(email:string): number{
-   //return this.
-   return 0;
-  } 
 }
