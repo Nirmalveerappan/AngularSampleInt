@@ -23,6 +23,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.loggedEmail  = sessionStorage.getItem('loggedEmail');
       this.getUniqueKey(this.loggedEmail).subscribe((response)=>{
+        let res = response.find(function(val){return val.email == sessionStorage.getItem('loggedEmail')});
+       this.uniqueKey =  res.randomRefNumber;
     });
   }
 
