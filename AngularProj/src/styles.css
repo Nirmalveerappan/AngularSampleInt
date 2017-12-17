@@ -55,11 +55,7 @@ label {
 }
 
 .header-solid {
-    background: url("http://www.hddesktopbackgrounds.us/backgrounds-images/1920x1080/5amnf-desktop-56289262-1920x1080.jpg"), -moz-linear-gradient(top, #009dd7 0, #0079b1 50%, 100%);
-    background: url("http://www.hddesktopbackgrounds.us/backgrounds-images/1920x1080/5amnf-desktop-56289262-1920x1080.jpg"), -webkit-gradient(linear, left top, left bottom, color-stop(0%, #009dd7), color-stop(50%, #0079b1), color-stop(100%, #00538b));
-    background: url("http://www.hddesktopbackgrounds.us/backgrounds-images/1920x1080/5amnf-desktop-56289262-1920x1080.jpg"), -webkit-linear-gradient(top, #009dd7 0, #0079b1 50%, #00538b 100%);
-    background: url("http://www.hddesktopbackgrounds.us/backgrounds-images/1920x1080/5amnf-desktop-56289262-1920x1080.jpg"), -ms-linear-gradient(top, #009dd7 0, #0079b1 50%, #00538b 100%);
-    background: url("http://www.hddesktopbackgrounds.us/backgrounds-images/1920x1080/5amnf-desktop-56289262-1920x1080.jpg"), linear-gradient(to bottom, #009dd7 0, #0079b1 50%, #00538b 100%);
+    background-color: blueviolet;
     color: #e5eaf1;
 }
 

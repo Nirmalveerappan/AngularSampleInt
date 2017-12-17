@@ -1,3 +1,4 @@
+import { LoginComponent } from './login/login.component';
 import { DatabaseService } from './service/database.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -9,15 +10,12 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { RouterModule, Routes } from '@angular/router';
 import { HttpModule } from "@angular/http";
 import { routeValues } from "./app.routes";
-import { StatusBoardComponent } from './status-board/status-board.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    RegistrationComponent,
-    AppCountComponent,
-    StatusBoardComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
