@@ -1,3 +1,9 @@
-<p>
-  dashboard works!
-</p>
+<div class="containerlayout">
+  <p class = "headtxt-la center txt18 commonFontStyle">
+      Below are the list of users
+  </p>
+  
+  <input type="number"  class="form-control" placeholder="check ur password" [(ngModel)]="userRandomNo" />
+  <button type="button" class="btn-primary btn" (click)="validageUniqueKey()">Reset password</button>
+  {{errorMessage}}
+  {{successMessage}}
