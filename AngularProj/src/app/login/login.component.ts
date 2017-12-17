@@ -1,15 +1,51 @@
-import { Component, OnInit } from '@angular/core';
+import { DatabaseService } from './../database.service';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FirebaseListObservable, AngularFire } from "angularfire2";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  encapsulation: ViewEncapsulation.None 
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+ private userDetails : FirebaseListObservable<any[]>; ;
+  private loginForm : FormGroup;
+  items: FirebaseListObservable<any[]>;
 
-  ngOnInit() {
-  }
+    constructor( private db : DatabaseService, public afire: AngularFire, public router: Router) { 
+     this.items = afire.database.list('/Users');
+     this.items.subscribe((response => console.log(response)))
+    }
+    ngOnInit() {
+       this.callForData(null);
+    }
+ 
+    public callForData(userdata){
+     
+            this.loginForm =  new FormGroup({
+              username: new FormControl("", Validators.required),
+              email: new FormControl("", [Validators.required, Validators.email]),
+          });
+        }
+    
+        public checkData(data){
+          this.items = this.db.getItemsList({});
+          if(true){
+            
+            this.router.navigate(['/dashboard']);
+          }
+        }
+   
+    public submitForm({ value, valid }){
+      console.log(value);
+     
+      if(valid){
+       this.checkData(value);
+      }
+    }
 
 }
