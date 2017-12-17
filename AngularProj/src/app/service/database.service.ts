@@ -26,11 +26,4 @@ public getUniqueKey(email: string): FirebaseListObservable<any[]> {
 public createItem(item: Item): void  {
   this.items.push(item).catch(error => console.log(error));
 }
-public updateItem(key: string, value : any): void {
-  this.items.update(key,value).catch(error=>console.log(error));
-}
-public deleteItem( key : string): void {
-  this.items.remove(key).catch(error=>console.log(error))
-}
-
 }
