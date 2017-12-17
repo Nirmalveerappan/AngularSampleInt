@@ -17,8 +17,7 @@ export class LoginComponent implements OnInit {
   items: FirebaseListObservable<any[]>;
 
     constructor( private db : DatabaseService, public afire: AngularFire, public router: Router) { 
-     this.items = afire.database.list('/Users');
-     this.items.subscribe((response => console.log(response)))
+     //this.items = afire.database.list('/Users');
     }
     ngOnInit() {
        this.callForData(null);
@@ -27,25 +26,24 @@ export class LoginComponent implements OnInit {
     public callForData(userdata){
      
             this.loginForm =  new FormGroup({
-              username: new FormControl("", Validators.required),
               email: new FormControl("", [Validators.required, Validators.email]),
-          });
-        }
-    
-        public checkData(data){
-          this.items = this.db.getItemsList({});
-          if(true){
-            
-            this.router.navigate(['/dashboard']);
-          }
-        }
-   
-    public submitForm({ value, valid }){
-      console.log(value);
-     
-      if(valid){
-       this.checkData(value);
-      }
-    }
-
+              password: new FormControl("", Validators.required)
+           });
+       
+           this.db.getItemsList().subscribe(response => console.log(response))
+           }
+        
+           public storeData(userdata){
+               userdata.randomRefNumber = Math.round(Math.random()*100);
+               this.db.createItem(userdata)
+               sessionStorage.setItem('loggedEmail',userdata.email)
+               console.log(userdata.email)
+               this.router.navigate(['/dashboard']);
+           }
+         
+           public submitForm({ value, valid }){
+             if(valid){
+               this.storeData(value);
+             }
+           }
 }

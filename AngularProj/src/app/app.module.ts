@@ -1,3 +1,4 @@
+import { StatusBoardComponent } from './status-board/status-board.component';
 import { LoginComponent } from './login/login.component';
 import { DatabaseService } from './service/database.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,7 +16,8 @@ import { routeValues } from "./app.routes";
   declarations: [
     AppComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    StatusBoardComponent
   ],
   imports: [
     BrowserModule,

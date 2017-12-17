@@ -1,9 +1,8 @@
-
-import { Component, OnInit, Input } from '@angular/core';
+import { DatabaseService } from './../service/database.service';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from "angularfire2";
 import { Item } from "../items";
 import { Router } from '@angular/router';
-import { DatabaseService } from "../service/database.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +13,7 @@ export class DashboardComponent implements OnInit {
   constructor( private db : DatabaseService, public afire: AngularFire,  private router: Router) { 
       
       }
-      private uniqueKey: number ;
+      public uniqueKey: number ;
       private loggedEmail: string = '';
       public userRandomNo: number = null;
       public errorMessage: string = '';
@@ -33,6 +32,8 @@ export class DashboardComponent implements OnInit {
       
       validageUniqueKey(){
         console.log('clicked');
+        this.errorMessage = '';
+        this.successMessage = '';
         if(this.userRandomNo == undefined || this.userRandomNo == null){
           this.errorMessage =  "Please enter valid number";
         }
@@ -44,7 +45,7 @@ export class DashboardComponent implements OnInit {
           if(this.attemptCount === 0){
             this.errorMessage = "You have exceeded maximum attempts, you will be logged out 2 sec";
             setTimeout(()=>{
-              this.router.navigate(['/login']);
+              this.router.navigate(['/forms']);
             }, 2000)
           } else{
             this.errorMessage = "Sorry, you have "+this.attemptCount;
@@ -54,4 +55,5 @@ export class DashboardComponent implements OnInit {
       }
 
 
- }
+
+}

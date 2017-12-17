@@ -3,7 +3,6 @@
       Below are the list of users
   </p>
   
-  <input type="number"  class="form-control" placeholder="check ur password" [(ngModel)]="userRandomNo" />
-  <button type="button" class="btn-primary btn" (click)="validageUniqueKey()">Reset password</button>
-  {{errorMessage}}
-  {{successMessage}}
+  <input type="number"  class="form-control" placeholder="Enter Random No" [(ngModel)]="userRandomNo" />
+  <button type="button" class="btn-primary btn" (click)="validageUniqueKey()">Check password</button>
+  <app-status-board [status] = "successMessage" [errorMessage]="errorMessage"></app-status-board>

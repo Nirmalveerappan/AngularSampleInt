@@ -6,7 +6,6 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./status-board.component.css']
 })
 export class StatusBoardComponent implements OnInit {
-  @Input() count: number;
   @Input() status: string;
   @Input() errorMessage: string;
     constructor() { }
